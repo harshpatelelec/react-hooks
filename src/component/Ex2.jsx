@@ -47,7 +47,15 @@ function Ex2(props) {
       const pCount = Math.ceil(posts.length / props.itemsPerPage)
         setPageCount(pCount)
     },[posts])
- 
+
+    // page click handler, e = event
+    const handler = (e) => {
+      console.log('item =', e.selected)
+      const newOffset = Number(e.selected * props.itemsPerPage)  % posts.length;
+        console.log('newOffset =', newOffset)
+        setItemOffset(newOffset)
+    }
+
   return (
     <div className="container">
         <div className="row">
@@ -90,6 +98,7 @@ function Ex2(props) {
                 previousLinkClassName='page-link'
                 activeClassName='active'
                 activeLinkClassName='active'
+                onPageChange={handler}
             />
         </div>
       </div>
